@@ -44,8 +44,8 @@ $footer: #2A2F35;
   padding: 20px 10px 20px 120px;
   @include media() {
     width: 300px;
-    height: 180px;
-    padding: 10px 5px 10px 80px;
+    height: 300px;
+    padding: 20px 10px 20px 80px;
 
   }
 }
@@ -213,10 +213,15 @@ header {
   @include content($height: 650px);
   @include media() {
     height: 630px;
+    height: 1000px;
   }
   &::before {
     @include content-before($height: 450px);
     margin: 0 -10% 0;
+    @include media() {
+      margin: 0 -20% 0;
+      height: 850px;
+    }
   }
   h2 {
     @include h2();
@@ -263,13 +268,16 @@ header {
     font-size: 2.4rem;
     margin-bottom: 20px;
     @include media() {
-      font-size: 2.0rem;
-      margin-bottom: 10px;
+      font-size: 3.0rem;
+      margin-bottom: 20px;
     }
   }
   p {
     font-size: 1.6rem;
     line-height: 18px;
+    @include media() {
+      line-height: 22px;
+    }
   }
 }
 
