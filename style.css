@@ -46,7 +46,7 @@ header .name {
   top: 14%;
   left: calc(20% + 30px);
   width: 160px;
-  font-family: 'HiraMinProN-W6';
+  font-family: 'Noto Serif JP', sans-serif;
 }
 
 header .name h1 {
@@ -80,7 +80,7 @@ header .catch .catch-inner {
 
 header .catch .catch-inner h2 {
   margin-bottom: 30px;
-  font-family: 'Hiragino Mincho Pro';
+  font-family: 'Noto Serif JP', sans-serif;
   font-size: 3.0rem;
   font-style: italic;
   line-height: 44px;
