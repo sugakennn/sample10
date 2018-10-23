@@ -1,0 +1,507 @@
+$main-color: #ee7325;
+$yellow: #F6B615;
+$green: #7DAF3B;
+$twitter: #00ACED;
+$facebook: #3B5998;
+$linkedin: #4875B4;
+$instagram: #517FA4;
+$footer: #2A2F35;
+
+@mixin content($height) {
+  position: relative;
+  overflow: hidden;
+  height: $height;
+}
+
+@mixin content-before($height) {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140%;
+  height: $height;
+  margin: -15% -10% 0;
+  background: {
+    color: $main-color;
+  }
+  -webkit-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transform: rotate(6deg);
+  -ms-transform: rotate(6deg);
+  transform: rotate(6deg);
+  z-index: -1;
+}
+
+@mixin reason-box($top, $left) {
+  width: 400px;
+  height: 200px;
+  border: 3px solid #ccc;
+  position: relative;
+  top: $top;
+  left: $left;
+  overflow: hidden;
+  padding: 20px 10px 20px 120px;
+  @include media() {
+    width: 300px;
+    height: 180px;
+    padding: 10px 5px 10px 80px;
+
+  }
+}
+
+@mixin reason-box-before() {
+  content: '0' counter(num) '.';
+  counter-increment: num;
+  font-size: 12.0rem;
+  font-weight: bold;
+  position: absolute;
+  top: -24px;
+  left: -40px;
+  letter-spacing: -11px;
+  @include media() {
+    top: -20px;
+    left: -30px;
+    font-size: 9.0rem;
+  }
+}
+
+@mixin h2() {
+  font-size: 1.8rem;
+  position: absolute;
+  left: calc(20%);
+  @include media() {
+    left: 20px;
+  }
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 6px;
+    margin: 0 10px 0 0;
+    background-color: $main-color;
+    vertical-align: middle;
+  }
+}
+
+//スマホ用メディアクエリ
+@mixin media ($width-media: 959px) {
+  @media (max-width: $width-media) {
+    @content;
+  }
+}
+
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  color: #000;
+}
+
+.br::before {
+  content: '\A';
+  white-space: pre;
+}
+
+header {
+  @include content($height: 750px);
+  @include media() {
+    height: 560px
+  }
+  &::before {
+    @include content-before($height: 750px);
+    background: {
+      image: url('top3.png');
+      size: cover;
+      repeat: no-repeat;
+      position: right 200px top 30px;
+    }
+    @include media() {
+      height: 560px;
+      background-image: unset;
+    }
+  }
+  .name {
+    width: 160px;
+    position: absolute;
+    left: calc(20% + 30px);
+    top: 14%;
+    font-family: 'HiraMinProN-W6';
+    h1 {
+      font-size: 4.0rem;
+    }
+    .en {
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+    }
+    .position {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    @include media() {
+      left: 20px;
+    }
+  }
+  .catch {
+    width: 300px;
+    height: 400px;
+    color: #fff;
+    background-color: #000;
+    padding: 30px;
+    position: absolute;
+    top: calc(50% - 100px);
+    left: 20%;
+    @include media() {
+      left: 20px;
+      width: 200px;
+      height: 300px;
+      padding: 20px;
+    }
+    .catch-inner {
+      position: relative;
+      h2 {
+        font-family: 'Hiragino Mincho Pro';
+        font-style: italic;
+        font-size: 3.0rem;
+        line-height: 44px;
+        margin-bottom: 30px;
+        @include media() {
+          font-size: 2.0rem;
+          line-height: 30px;
+          margin-bottom: 20px;
+        }
+      }
+      p {
+        font-size: 1.4rem;
+        line-height: 18px;
+      }
+      .quote-top {
+        font-size: 5.0rem;
+        position: absolute;
+        top: -56px;
+        left: 0;
+        @include media() {
+          font-size: 3.0rem;
+          top: -36px;
+        }
+      }
+      .quote-bottom {
+        transform: rotateY( 180deg );
+        font-size: 5.0rem;
+        position: absolute;
+        bottom: -92px;
+        right: 0;
+        @include media() {
+          font-size: 3.0rem;
+          bottom: -58px;
+        }
+      }
+    }
+
+  }
+}
+
+//選ばれる理由
+.reason {
+  counter-reset: num;
+  @include media() {
+    margin-top: 30px;
+  }
+  @include content($height: 650px);
+  @include media() {
+    height: 630px;
+  }
+  &::before {
+    @include content-before($height: 450px);
+    margin: 0 -10% 0;
+  }
+  h2 {
+    @include h2();
+  }
+  .reason-box:nth-of-type(1) {
+    @include reason-box($top: 0px, $left: 40%);
+    z-index:1;
+    background-color: #fff;
+    @include media() {
+      left: 0;
+      margin-top: 30px;
+    }
+    &::before {
+      @include reason-box-before();
+      color: $yellow;
+    }
+  }
+  .reason-box:nth-of-type(2) {
+    z-index: 2;
+    background-color: #000;
+    color: #fff;
+    @include reason-box($top: -10px, $left: 55%);
+    @include media() {
+      left: calc(100% - 300px);
+    }
+    &::before {
+      @include reason-box-before();
+      color: $main-color;
+    }
+  }
+  .reason-box:nth-of-type(3) {
+    z-index: 3;
+    background-color: #fff;
+    @include reason-box($top: -20px, $left: 46%);
+    @include media() {
+      left: 0;
+    }
+    &::before {
+      @include reason-box-before();
+      color: $green;
+    }
+  }
+  h3 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    @include media() {
+      font-size: 2.0rem;
+      margin-bottom: 10px;
+    }
+  }
+  p {
+    font-size: 1.6rem;
+    line-height: 18px;
+  }
+}
+
+//実績
+.result {
+  h2 {
+    @include h2();
+  }
+  ul {
+    padding-top: 30px;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+    li {
+      float: left;
+      width: 300px;
+      height: 300px;
+      background-color: transparent;
+      padding: 20px;
+      @include media() {
+        float: none;
+        width: 100%;
+        height: 200px;
+        padding: 10px;
+      }
+      i.fa-quote-left {
+        display: block;
+        font-size: 3.0rem;
+      }
+      div {
+        font-size: 1.8rem;
+        padding: 20px;
+        line-height: 22px;
+        width: 100%;
+        height: 100%;
+        @include media() {
+          padding: 10px;
+        }
+      }
+    }
+    li:nth-of-type(1) {
+      background-color: $yellow;
+      i.fa-quote-left {
+        color: #fff;
+      }
+      div {
+        border: 3px solid #fff;
+      }
+    }
+    li:nth-of-type(3) {
+      div {
+        border: 3px solid #ccc;
+      }
+    }
+    li:nth-of-type(5) {
+      background-color: $main-color;
+      i.fa-quote-left {
+        color: #fff;
+      }
+      div {
+        border: 3px solid #fff;
+        color: #fff;
+      }
+    }
+  }
+}
+
+//経歴
+.resume {
+  margin-top: 80px;
+  @include content($height: 650px);
+  @include media {
+    height: 1200px;
+    margin-top: 50px;
+  }
+  &::before {
+    @include content-before($height: 450px);
+    margin: 0 -10% 0;
+    @include media {
+      height: 1100px;
+      margin: 0 -20% 0;
+    }
+  }
+  h2 {
+    @include h2();
+  }
+  .resume-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 30px;
+    .resume-left {
+      float: left;
+      width: 300px;
+      height: 400px;
+      background: {
+        image: url('top.jpg');
+        size: cover;
+        repeat: no-repeat;
+
+      }
+      @include media() {
+        float: none;
+        width: 100%;
+
+      }
+    }
+    .resume-right {
+      float: left;
+      width: 400px;
+      font-size: 1.8rem;
+      line-height: 22px;
+      margin-left: 20px;
+      @include media() {
+        float: none;
+        width:100%;
+        padding: 20px;
+        margin-left: 0;
+      }
+      .resume-right-image {
+        margin-top: 20px;
+        width: 400px;
+        height: 200px;
+        background: {
+          image: url('photo.png');
+          size: cover;
+          repeat: no-repeat;
+        }
+        @include media() {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+/* フッター */
+.reference {
+  background-color: $footer;
+  color: #fff;
+  .reference-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    @include media() {
+      padding: 0 20px;
+    }
+  }
+  .tmp {
+    font-size: 3.0rem;
+    padding: 40px 0;
+    border-bottom: 1px solid #fff;
+    @include media() {
+      font-size: 2.0rem;
+    }
+  }
+  .links {
+    overflow: hidden;
+    padding: 30px 0;
+    font-size: 1.6rem;
+    .link-blog {
+      float: left;
+      width: auto;
+      margin-right: 40px;
+    }
+    .link-sns {
+      float: left;
+      width: auto;
+    }
+    li {
+      margin-bottom: 20px;
+      a{
+        color: #fff;
+        transition: all 0.3s;
+        i {
+          margin-right: 8px;
+          color: #fff;
+          transition: all 0.3s;
+        }
+      }
+      a.mail {
+        &:hover {
+          color: $main-color;
+          i {
+            color: $main-color;
+          }
+        }
+      }
+      a.phone {
+        &:hover {
+          color: $green;
+          i {
+            color: $green;
+          }
+        }
+      }
+      a.twitter {
+        &:hover {
+          color: $twitter;
+          i {
+            color: $twitter;
+          }
+        }
+      }
+      a.facebook {
+        &:hover {
+          color: $facebook;
+          i {
+            color: $facebook;
+          }
+        }
+      }
+      a.linkedin {
+        &:hover {
+          color: $linkedin;
+          i {
+            color: $linkedin;
+          }
+        }
+      }
+      a.instagram {
+        &:hover {
+          color: $instagram;
+          i {
+            color: $instagram;
+          }
+        }
+      }
+    }
+  }
+}
+.copy {
+  background-color: darken($footer, 5%);
+  text-align: center;
+  padding: 30px 0;
+}
